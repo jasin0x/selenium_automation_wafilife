@@ -44,4 +44,21 @@ public class loginPage_test extends DriverSetup {
         System.out.println(loginPage.getElementText(loginPage.confirmationMessageElement));
     }
 
+    @Test
+    public void isForgetPasswordButtonWorking(){
+        getDriver().get(loginPage.loginPageUrl);
+        loginPage.clickOnElement(loginPage.forgetpassButton);
+        Assert.assertEquals(loginPage.getElementText(loginPage.forgetPasswordMessageElement),loginPage.forgetPasswordMessage);
+        //System.out.println(loginPage.getElementText(loginPage.forgetPasswordMessageElement));
+    }
+
+    @Test
+    public void passwordResetConfirmation(){
+        getDriver().get(loginPage.loginPageUrl);
+        loginPage.clickOnElement(loginPage.forgetpassButton);
+        loginPage.writeOnElement(loginPage.emailForResetPassword,loginPage.userEmail);
+        loginPage.clickOnElement(loginPage.passwordResetButton);
+        Assert.assertEquals(loginPage.getElementText(loginPage.passowrdResetConfirmation),"আপনাকে পাসওয়ার্ড রিসেট ইমেইল পাঠানো হয়েছে।");
+    }
+
 }
