@@ -1,6 +1,7 @@
 package testcases;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -12,7 +13,7 @@ public class loginPage_test extends DriverSetup {
 
     LoginPage loginPage = new LoginPage();
 
-    @BeforeMethod
+    @BeforeClass
     public void getToTheUrl(){
         getDriver().get(loginPage.loginPageUrl);
     }
@@ -37,9 +38,9 @@ public class loginPage_test extends DriverSetup {
         loginPage.writeOnElement(loginPage.passwordField,password);
         loginPage.clickOnElement(loginPage.loginButton);
         Assert.assertEquals(getDriver().getCurrentUrl(),"https://www.wafilife.com/my-account/");
-        //Assert.assertEquals(loginPage.getElementText(loginPage.warningMessage), warning);
-        Assert.assertTrue(loginPage.doContain(loginPage.warningMessage,warning));
-        System.out.println(loginPage.getElementText(loginPage.warningMessage));
+        Assert.assertEquals(loginPage.getElementText(loginPage.warningMessage), warning);
+        //Assert.assertTrue(loginPage.doContain(loginPage.warningMessage,warning));
+        //System.out.println(loginPage.getElementText(loginPage.warningMessage));
     }
 
     @Test

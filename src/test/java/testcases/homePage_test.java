@@ -1,5 +1,8 @@
 package testcases;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
@@ -7,6 +10,8 @@ import pages.LoginPage;
 import utilities.DriverSetup;
 
 import java.sql.Driver;
+import java.util.Iterator;
+import java.util.Set;
 
 public class homePage_test extends DriverSetup {
 
@@ -38,6 +43,24 @@ public class homePage_test extends DriverSetup {
         homepage.clickOnElement(homepage.loginButton);
         Assert.assertEquals(getDriver().getCurrentUrl(),loginPage.loginPageUrl);
         Assert.assertEquals(getDriver().getTitle(),loginPage.loginPageTitle);
+    }
+
+    @Test
+    public void testNecessaryLinks(){
+        getDriver().get(homepage.homepageUrl);
+        WebElement necessaryLinkColumn = getDriver().findElement(homepage.necessaryColumn);
+        for (int i=1; i<necessaryLinkColumn.findElements(By.tagName("a")).size(); i++){
+            String clickonLinkTab = Keys.chord(Keys.CONTROL,Keys.ENTER);
+            necessaryLinkColumn.findElements(By.tagName("a")).get(i).sendKeys(clickonLinkTab);
+        }
+        Set<String> abc = getDriver().getWindowHandles();//4
+        Iterator<String> it = abc.iterator();
+
+        while (it.hasNext()) {
+            getDriver().switchTo().window(it.next());
+            //System.out.println(getDriver().getTitle());
+
+        }
     }
 
 

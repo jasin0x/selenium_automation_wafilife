@@ -3,6 +3,7 @@ package testcases;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
@@ -15,7 +16,8 @@ public class writersPage_test extends DriverSetup {
 
     WritersPage writersPage = new WritersPage();
     LoginPage loginPage = new LoginPage();
-    @BeforeMethod
+
+    @BeforeClass
     public void logIntoAccount(){
         getDriver().get(loginPage.loginPageUrl);
         loginPage.writeOnElement(loginPage.emailField,"mahamudulh7788@gmail.com");
@@ -24,10 +26,26 @@ public class writersPage_test extends DriverSetup {
     }
 
     @Test
+    public void hoverOnWriter() throws InterruptedException {
+        WebElement elementToHover = getDriver().findElement(writersPage.writer);
+        writersPage.hoverOverElement(elementToHover);
+        Thread.sleep(2000);
+    }
+
+    @Test
     public void gotoWritersPage(){
         writersPage.clickOnElement(writersPage.writer);
         Assert.assertEquals(getDriver().getCurrentUrl(),writersPage.writerPageUrl);
         Assert.assertEquals(writersPage.getElementText(writersPage.writerPageHeadingElement),"লেখক");
+    }
+
+    @Test
+    public void gotoNextPage() throws InterruptedException {
+        writersPage.clickOnElement(writersPage.writer);
+        writersPage.scrolltoElement(writersPage.nextPageButton);
+        writersPage.clickOnElement(writersPage.nextPageButton);
+        writersPage.pageNavigate("back");
+        //Thread.sleep(2000);
     }
 
     //scraping the writer by preferred name and searching by the scraped name
@@ -43,7 +61,7 @@ public class writersPage_test extends DriverSetup {
                 writersPage.writeOnElement(writersPage.searchBox,name);
                 writersPage.clickOnElement(writersPage.searchButton);
                 getDriver().findElement(By.linkText(name)).click();
-                Thread.sleep(5000);
+                //Thread.sleep(5000);
                 break;
             }
         }

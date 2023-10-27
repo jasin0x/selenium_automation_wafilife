@@ -17,7 +17,7 @@ public class LoginPage extends basePage{
     public String forgetPasswordMessage = "আপনার পাসওয়ার্ড হারিয়েছেন? আপনার ইউজার নাম বা ইমেল ঠিকানা লিখুন. আপনি ইমেইল এর মাধ্যমে একটি নতুন পাসওয়ার্ড তৈরি করার জন্য একটি লিঙ্ক পাবেন.";
     public By emailForResetPassword = By.cssSelector("#user_login");
     public By passowrdResetConfirmation = By.cssSelector(".woocommerce-message");
-    public By warningMessage = By.xpath("//li[contains(text(),'Unknown email address. Check again or try your use')]");
+    public By warningMessage = By.cssSelector("ul[class='woocommerce-error'] li");
 
     public By confirmationMessageElement = By.xpath("//div[@id='template-wrapper']//p[1]");
 }

@@ -10,5 +10,7 @@ public class WritersPage extends basePage{
     public By searchBox = By.id("cat_search");
     public By searchButton = By.cssSelector("button[class='btn btn-default'] i[class='fa fa-search']");
     public String preferredWriter = "Mahbubur Rahman";
+    public By nextPageButton = By.cssSelector(".next.page-numbers");
+
 
 }
