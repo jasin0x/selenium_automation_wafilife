@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.BookDetailsPage;
 import pages.LoginPage;
 import pages.WritersPage;
 import utilities.DriverSetup;
@@ -16,6 +17,10 @@ public class writersPage_test extends DriverSetup {
 
     WritersPage writersPage = new WritersPage();
     LoginPage loginPage = new LoginPage();
+
+    BookDetailsPage bookDetailsPage = new BookDetailsPage();
+
+    String booksPageUrl;
 
     @BeforeClass
     public void logIntoAccount(){
@@ -61,11 +66,32 @@ public class writersPage_test extends DriverSetup {
                 writersPage.writeOnElement(writersPage.searchBox,name);
                 writersPage.clickOnElement(writersPage.searchButton);
                 getDriver().findElement(By.linkText(name)).click();
+                booksPageUrl = getDriver().getCurrentUrl();
+                Assert.assertEquals(getDriver().getCurrentUrl(),writersPage.selectedWriterBooksUrl);
+                Assert.assertEquals(writersPage.getElementText(writersPage.selectedWriterPageHeading), writersPage.preferredWriter);
                 //Thread.sleep(5000);
                 break;
             }
         }
 
+    }
+
+    //count books of the selected writer and get the name of the books
+    @Test
+    public void countAndGetBooksName(){
+        //getDriver().get(booksPageUrl);
+        List<WebElement> books = getDriver().findElements(writersPage.books);
+        System.out.println("Total books: "+books.size());
+        for (WebElement book: books){
+            System.out.println(book.getText());
+        }
+    }
+
+    @Test
+    public void selectBook(){
+        getDriver().findElement(By.linkText("Islam Science And Culture")).click();
+        Assert.assertEquals(getDriver().getCurrentUrl(), bookDetailsPage.bookDetailsUrl);
+        Assert.assertEquals(writersPage.getElementText(bookDetailsPage.bookHeading),"ISLAM SCIENCE AND CULTURE");
     }
 
 

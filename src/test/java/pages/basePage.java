@@ -16,30 +16,30 @@ import static utilities.DriverSetup.getDriver;
 
 public class basePage {
 
+    public WebDriverWait wait;
+    public Actions action;
+
+
     //it will return single element
     public WebElement getElement(By locator){
         return waitforElementPresence(locator);
     }
 
-
-
     public String getElementText(By locator){
         return getElement(locator).getText();
     }
-
 
     public boolean doContain(By locator, String text) {
         return getElement(locator).getText().contains(text);
     }
 
-
     public WebElement waitforElementPresence(By locator){
-        WebDriverWait wait =new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        wait =new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     public WebElement waitForElementToBeClickable(By locator){
-        WebDriverWait wait =new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        wait =new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
@@ -66,14 +66,14 @@ public class basePage {
     }
 
     public void hoverOverElement(WebElement element){
-        Actions action = new Actions(getDriver());
+        action = new Actions(getDriver());
         action.moveToElement(element).build().perform();
     }
 
     public void scrolltoElement(By locator){
 //        JavascriptExecutor js = (JavascriptExecutor)getDriver();
 //        js.executeScript("window.scrollBy(0,500)");
-        Actions action = new Actions(getDriver());
+        action = new Actions(getDriver());
         action.scrollToElement(getElement(locator)).build().perform();
     }
 
