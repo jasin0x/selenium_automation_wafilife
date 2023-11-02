@@ -34,12 +34,12 @@ public class basePage {
     }
 
     public WebElement waitforElementPresence(By locator){
-        wait =new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        wait =new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     public WebElement waitForElementToBeClickable(By locator){
-        wait =new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+        wait =new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
@@ -52,7 +52,12 @@ public class basePage {
     }
 
     public void clickOnElement(By locator){
-        waitforElementPresence(locator).click();
+        waitForElementToBeClickable(locator).click();
+    }
+
+    public void clickOnRadioButton(By locator){
+        WebElement radioButton = getDriver().findElement(locator);
+        radioButton.click();
     }
 
     public void writeOnElement(By locator, String text){

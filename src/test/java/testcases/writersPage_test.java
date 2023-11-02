@@ -4,9 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.BookDetailsPage;
+import pages.BookdetailsAndOrderPage;
 import pages.LoginPage;
 import pages.WritersPage;
 import utilities.DriverSetup;
@@ -18,7 +17,7 @@ public class writersPage_test extends DriverSetup {
     WritersPage writersPage = new WritersPage();
     LoginPage loginPage = new LoginPage();
 
-    BookDetailsPage bookDetailsPage = new BookDetailsPage();
+    BookdetailsAndOrderPage bookdetailsAndOrderPage = new BookdetailsAndOrderPage();
 
     String booksPageUrl;
 
@@ -90,8 +89,8 @@ public class writersPage_test extends DriverSetup {
     @Test
     public void selectBook(){
         getDriver().findElement(By.linkText("Islam Science And Culture")).click();
-        Assert.assertEquals(getDriver().getCurrentUrl(), bookDetailsPage.bookDetailsUrl);
-        Assert.assertEquals(writersPage.getElementText(bookDetailsPage.bookHeading),"ISLAM SCIENCE AND CULTURE");
+        Assert.assertEquals(getDriver().getCurrentUrl(), bookdetailsAndOrderPage.bookDetailsUrl);
+        Assert.assertEquals(writersPage.getElementText(bookdetailsAndOrderPage.bookHeading),"ISLAM SCIENCE AND CULTURE");
     }
 
 

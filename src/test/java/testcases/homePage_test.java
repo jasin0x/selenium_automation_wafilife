@@ -9,7 +9,6 @@ import pages.HomePage;
 import pages.LoginPage;
 import utilities.DriverSetup;
 
-import java.sql.Driver;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -33,14 +32,14 @@ public class homePage_test extends DriverSetup {
     @Test
     public void isLoginButtonVisible(){
         getDriver().get(homepage.homepageUrl);
-        Assert.assertTrue(homepage.isElementVisible(homepage.loginButton));
+        Assert.assertTrue(homepage.isElementVisible(homepage.logInButton));
         //System.out.println(homepage.isElementVisible(homepage.loginButton));
     }
 
     @Test
     public void isLoginButtonClickable(){
         getDriver().get(homepage.homepageUrl);
-        homepage.clickOnElement(homepage.loginButton);
+        homepage.clickOnElement(homepage.logInButton);
         Assert.assertEquals(getDriver().getCurrentUrl(),loginPage.loginPageUrl);
         Assert.assertEquals(getDriver().getTitle(),loginPage.loginPageTitle);
     }

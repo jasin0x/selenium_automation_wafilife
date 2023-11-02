@@ -13,7 +13,7 @@ public class loginPage_test extends DriverSetup {
 
     LoginPage loginPage = new LoginPage();
 
-    @BeforeClass
+    @BeforeMethod
     public void getToTheUrl(){
         getDriver().get(loginPage.loginPageUrl);
     }
@@ -50,6 +50,7 @@ public class loginPage_test extends DriverSetup {
         loginPage.writeOnElement(loginPage.passwordField,"zxcvqwer");
         loginPage.clickOnElement(loginPage.loginButton);
         Assert.assertEquals(loginPage.getElementText(loginPage.confirmationMessageElement),"আসসালামু আলাইকুম mahamudulh7788 (যদি আপনি mahamudulh7788 না হয়ে থাকেন তাহলে লগ অউট করুন)");
+        loginPage.clickOnElement(loginPage.logOutButton);
         //System.out.println(loginPage.getElementText(loginPage.confirmationMessageElement));
     }
 
