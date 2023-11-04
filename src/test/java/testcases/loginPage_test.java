@@ -18,20 +18,20 @@ public class loginPage_test extends DriverSetup {
         getDriver().get(loginPage.loginPageUrl);
     }
 
-    @Test
+    @Test(priority = 1)
     public void checkHeading(){
         //getDriver().get(loginPage.loginPageUrl);
         Assert.assertEquals(loginPage.getElementText(loginPage.headingElement),loginPage.heading);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testInputFields(){
         //getDriver().get(loginPage.loginPageUrl);
         Assert.assertTrue(loginPage.isElementVisible(loginPage.emailField));
         Assert.assertTrue(loginPage.isElementVisible(loginPage.passwordField));
     }
 
-    @Test(dataProvider = "invalidCredentials",dataProviderClass = DataSet.class)
+    @Test(dataProvider = "invalidCredentials",dataProviderClass = DataSet.class, priority = 3)
     public void testLoginWithoutInvalidCredentials(String email, String password, String warning){
         //getDriver().get(loginPage.loginPageUrl);
         loginPage.writeOnElement(loginPage.emailField,email);
@@ -43,7 +43,7 @@ public class loginPage_test extends DriverSetup {
         //System.out.println(loginPage.getElementText(loginPage.warningMessage));
     }
 
-    @Test
+    @Test(priority = 4)
     public void loginWithValidCredential(){
         //getDriver().get(loginPage.loginPageUrl);
         loginPage.writeOnElement(loginPage.emailField,"mahamudulh7788@gmail.com");
@@ -54,7 +54,7 @@ public class loginPage_test extends DriverSetup {
         //System.out.println(loginPage.getElementText(loginPage.confirmationMessageElement));
     }
 
-    @Test
+    @Test(priority = 5)
     public void isForgetPasswordButtonWorking(){
         //getDriver().get(loginPage.loginPageUrl);
         loginPage.clickOnElement(loginPage.forgetpassButton);
@@ -62,7 +62,7 @@ public class loginPage_test extends DriverSetup {
         System.out.println(loginPage.getElementText(loginPage.forgetPasswordMessageElement));
     }
 
-    @Test
+    @Test(priority = 6)
     public void passwordResetConfirmation(){
         //getDriver().get(loginPage.loginPageUrl);
         loginPage.clickOnElement(loginPage.forgetpassButton);

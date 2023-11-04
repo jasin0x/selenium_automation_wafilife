@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 
 public class BookdetailsAndOrderPage extends basePage{
 
@@ -11,20 +12,23 @@ public class BookdetailsAndOrderPage extends basePage{
     public By itemConfirmation = By.xpath("(//span[normalize-space()='1 items'])[1]");
     public By confirmationWindowClose = By.xpath("//span[@aria-hidden='true']");
     public By cartButton = By.cssSelector("a[title='View your shopping cart']");
+    public By clearCart = By.cssSelector("a[title='বাতিল করুন']");
     public By cartOrderButton = By.cssSelector(".button.checkout.wc-forward");
     public By nameField = By.cssSelector("#billing_first_name");
     public By phoneNumberField = By.cssSelector("#billing_phone");
     public By emailField = By.cssSelector("#billing_email");
-    public By districtDropdown = By.cssSelector("#select2-billing_state-container");
-    //public By targetDistrict = By.cssSelector("#select2-billing_state-result-a2cv-BD-12");
-    public By targetDistrict = By.linkText("Khulna");
-    public By districtInputField = By.cssSelector("input[role='combobox']");
-    public By selectedDistrict = By.linkText("Gazipur");
+    public By districtDropdown = By.cssSelector("#billing_state");
     public By areaDropdown = By.cssSelector("#billing_area");
     public By address = By.cssSelector("#billing_address_1");
-    public By deliveryChargeOption = By.id("shipping_method_0_flat_rate8");
+    public By deliveryChargeOption = By.cssSelector("#shipping_method_0_flat_rate2");
     public By paymentMethod = By.id("payment_method_nagad");
-    public By myAccount = By.cssSelector("div[class='login-links'] a[title='আমার অ্যাকাউন্ট']");
+    public By myAccount = By.xpath("(//a[@title='আমার অ্যাকাউন্ট'][contains(text(),'আমার অ্যাকাউন্ট')])[2]");
+
+    public void selectArea(By field ,String visibleText) throws InterruptedException {
+        Thread.sleep(3000);
+        Select select = new Select(getElement(field));
+        select.selectByVisibleText(visibleText);
+    }
 
 
 }

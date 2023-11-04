@@ -29,21 +29,21 @@ public class writersPage_test extends DriverSetup {
         loginPage.clickOnElement(loginPage.loginButton);
     }
 
-    @Test
+    @Test(priority = 1)
     public void hoverOnWriter() throws InterruptedException {
         WebElement elementToHover = getDriver().findElement(writersPage.writer);
         writersPage.hoverOverElement(elementToHover);
         Thread.sleep(2000);
     }
 
-    @Test
+    @Test(priority = 2)
     public void gotoWritersPage(){
         writersPage.clickOnElement(writersPage.writer);
         Assert.assertEquals(getDriver().getCurrentUrl(),writersPage.writerPageUrl);
         Assert.assertEquals(writersPage.getElementText(writersPage.writerPageHeadingElement),"লেখক");
     }
 
-    @Test
+    @Test(priority = 3)
     public void gotoNextPage() throws InterruptedException {
         writersPage.clickOnElement(writersPage.writer);
         writersPage.scrolltoElement(writersPage.nextPageButton);
@@ -53,7 +53,7 @@ public class writersPage_test extends DriverSetup {
     }
 
     //scraping the writer by preferred name and searching by the scraped name
-    @Test
+    @Test(priority = 4)
     public void searchPreferredWriter() throws InterruptedException {
         writersPage.clickOnElement(writersPage.writer);
         String name;
@@ -76,7 +76,7 @@ public class writersPage_test extends DriverSetup {
     }
 
     //count books of the selected writer and get the name of the books
-    @Test
+    @Test(priority = 5)
     public void countAndGetBooksName(){
         //getDriver().get(booksPageUrl);
         List<WebElement> books = getDriver().findElements(writersPage.books);
@@ -86,7 +86,7 @@ public class writersPage_test extends DriverSetup {
         }
     }
 
-    @Test
+    @Test(priority = 6)
     public void selectBook(){
         getDriver().findElement(By.linkText("Islam Science And Culture")).click();
         Assert.assertEquals(getDriver().getCurrentUrl(), bookdetailsAndOrderPage.bookDetailsUrl);

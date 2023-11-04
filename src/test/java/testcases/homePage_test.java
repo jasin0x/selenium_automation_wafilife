@@ -17,26 +17,26 @@ public class homePage_test extends DriverSetup {
     HomePage homepage = new HomePage();
     LoginPage loginPage = new LoginPage();
 
-    @Test
+    @Test(priority = 1)
     public void testHomepageUrl(){
         getDriver().get(homepage.homepageUrl);
         Assert.assertEquals(getDriver().getCurrentUrl(),homepage.homepageUrl);
     }
 
-    @Test
+    @Test(priority = 2)
     public void testHomepageTitle(){
         getDriver().get(homepage.homepageUrl);
         Assert.assertEquals(getDriver().getTitle(),homepage.homepageTitle);
     }
 
-    @Test
+    @Test(priority = 3)
     public void isLoginButtonVisible(){
         getDriver().get(homepage.homepageUrl);
         Assert.assertTrue(homepage.isElementVisible(homepage.logInButton));
         //System.out.println(homepage.isElementVisible(homepage.loginButton));
     }
 
-    @Test
+    @Test(priority = 3)
     public void isLoginButtonClickable(){
         getDriver().get(homepage.homepageUrl);
         homepage.clickOnElement(homepage.logInButton);
@@ -44,7 +44,7 @@ public class homePage_test extends DriverSetup {
         Assert.assertEquals(getDriver().getTitle(),loginPage.loginPageTitle);
     }
 
-    @Test
+    @Test(priority = 4)
     public void testNecessaryLinks(){
         getDriver().get(homepage.homepageUrl);
         WebElement necessaryLinkColumn = getDriver().findElement(homepage.necessaryColumn);
