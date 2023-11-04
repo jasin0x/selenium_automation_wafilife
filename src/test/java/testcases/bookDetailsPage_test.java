@@ -1,5 +1,6 @@
 package testcases;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -19,29 +20,36 @@ public class bookDetailsPage_test extends DriverSetup {
     Select select;
     Actions actions;
     @Test(priority = 1)
+    @Description("Visiting book details page")
     public void goToBookDetailsPage(){
         getDriver().get(loginPage.loginPageUrl);
         loginPage.writeOnElement(loginPage.emailField,"mahamudulh7788@gmail.com");
         loginPage.writeOnElement(loginPage.passwordField,"zxcvqwer");
         loginPage.clickOnElement(loginPage.loginButton);
         getDriver().get(bookdetailsAndOrderPage.bookDetailsUrl);
+        bookdetailsAndOrderPage.addScreenShot("After going to the preferred book's details page");
         Assert.assertEquals(getDriver().getCurrentUrl(),bookdetailsAndOrderPage.bookDetailsUrl);
     }
 
     @Test(priority = 2)
+    @Description("Order button's visibility")
     public void checkOrderButtonPresence(){
+        bookdetailsAndOrderPage.addScreenShot("Checking the order button presence");
         Assert.assertTrue(bookdetailsAndOrderPage.isElementVisible(bookdetailsAndOrderPage.orderButton));
     }
 
     @Test(priority = 3)
+    @Description("Adding book to the cart")
     public void checkIfProductIsAddedToCart() throws InterruptedException {
         bookdetailsAndOrderPage.clickOnElement(bookdetailsAndOrderPage.orderButton);
         Thread.sleep(5000);
+        bookdetailsAndOrderPage.addScreenShot("Confirming product added to the cart");
         Assert.assertEquals(bookdetailsAndOrderPage.getElementText(bookdetailsAndOrderPage.itemConfirmation),"1 items");
         bookdetailsAndOrderPage.clickOnElement(bookdetailsAndOrderPage.confirmationWindowClose);
     }
 
     @Test(priority = 4)
+    @Description("Filling billing info and logging out")
     public void orderConfirmation() throws InterruptedException {
 
         actions = new Actions(getDriver());
@@ -55,12 +63,14 @@ public class bookDetailsPage_test extends DriverSetup {
         bookdetailsAndOrderPage.writeOnElement(bookdetailsAndOrderPage.address,"Banani, Dhaka");
         bookdetailsAndOrderPage.clickOnElement(bookdetailsAndOrderPage.deliveryChargeOption);
         //bookdetailsAndOrderPage.clickOnElement(bookdetailsAndOrderPage.paymentMethod);
+        bookdetailsAndOrderPage.addScreenShot("After completing the billing information");
         Thread.sleep(5000);
         bookdetailsAndOrderPage.clickOnElement(bookdetailsAndOrderPage.myAccount);
         bookdetailsAndOrderPage.clickOnElement(bookdetailsAndOrderPage.cartButton);
         bookdetailsAndOrderPage.clickOnElement(bookdetailsAndOrderPage.clearCart);
         loginPage.clickOnElement(loginPage.logOutButton);
         Thread.sleep(5000);
+        bookdetailsAndOrderPage.addScreenShot("After Logging out");
         Assert.assertEquals(getDriver().getCurrentUrl(),loginPage.loginPageUrl);
     }
 
