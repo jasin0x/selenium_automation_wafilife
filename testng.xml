@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="D:/SQA/Tests/selenium_automation_wafilife/selenium_automation_wafilife/src/test/java/testcases">
+        <classes>
+
+            <class name="testcases.homePage_test">
+                <methods>
+                    <include name="testHomepageUrl"/>
+                    <include name="testHomepageTitle"/>
+                    <include name="isLoginButtonVisible"/>
+                    <include name="isLoginButtonClickable"/>
+                    <include name="testNecessaryLinks"/>
+                </methods>
+            </class>
+            <class name="testcases.loginPage_test">
+                <methods>
+                    <include name="checkHeading"/>
+                    <include name="testInputFields"/>
+                    <include name="testLoginWithoutInvalidCredentials"/>
+                    <include name="loginWithValidCredential"/>
+                    <include name="isForgetPasswordButtonWorking"/>
+                    <include name="passwordResetConfirmation"/>
+                </methods>
+            </class>
+            <class name="testcases.writersPage_test">
+                <methods>
+                    <include name="hoverOnWriter"/>
+                    <include name="gotoWritersPage"/>
+                    <include name="gotoNextPage"/>
+                    <include name="searchPreferredWriter"/>
+                    <include name="countAndGetBooksName"/>
+                    <include name="selectBook"/>
+                </methods>
+            </class>
+            <class name="testcases.bookDetailsPage_test">
+                <methods>
+                    <include name="goToBookDetailsPage"/>
+                    <include name="checkOrderButtonPresence"/>
+                    <include name="checkIfProductIsAddedToCart"/>
+                    <include name="orderConfirmation"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>
