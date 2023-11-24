@@ -62,7 +62,7 @@ public class homePage_test extends DriverSetup {
             String clickonLinkTab = Keys.chord(Keys.CONTROL,Keys.ENTER);
             necessaryLinkColumn.findElements(By.tagName("a")).get(i).sendKeys(clickonLinkTab);
         }
-        Set<String> abc = getDriver().getWindowHandles();//4
+        Set<String> abc = getDriver().getWindowHandles();
         Iterator<String> it = abc.iterator();
 
         while (it.hasNext()) {
